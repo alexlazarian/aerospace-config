@@ -5,13 +5,13 @@ CONFIG_DIR="$(cd "$(dirname "$0")" && pwd)"
 TARGET="$HOME/.aerospace.toml"
 
 usage() {
-    echo "Usage: $(basename "$0") <full|workspaces-only>"
+    echo "Usage: $(basename "$0") <1|2>"
     echo ""
     echo "Switches the active AeroSpace config by symlinking ~/.aerospace.toml"
     echo ""
     echo "Profiles:"
-    echo "  full             Full tiling WM (i3-like keybindings, layouts, resize mode)"
-    echo "  workspaces-only  Workspaces only (windows behave normally, no tiling)"
+    echo "  1  Full tiling WM (i3-like keybindings, layouts, resize mode)"
+    echo "  2  Workspaces only (windows behave normally, no tiling)"
     echo ""
     echo "Current: $(current_profile)"
     exit 1
@@ -34,9 +34,8 @@ if [ $# -ne 1 ]; then
 fi
 
 case "$1" in
-    full|workspaces-only)
-        SOURCE="$CONFIG_DIR/$1.toml"
-        ;;
+    1) SOURCE="$CONFIG_DIR/full.toml"; PROFILE="full" ;;
+    2) SOURCE="$CONFIG_DIR/workspaces-only.toml"; PROFILE="workspaces-only" ;;
     *)
         echo "Error: unknown profile '$1'"
         echo ""
@@ -56,7 +55,7 @@ if [ -f "$TARGET" ] && [ ! -L "$TARGET" ]; then
 fi
 
 ln -sf "$SOURCE" "$TARGET"
-echo "Switched to '$1' profile: $TARGET -> $SOURCE"
+echo "Switched to '$PROFILE' profile"
 
 if command -v aerospace &>/dev/null; then
     aerospace reload-config

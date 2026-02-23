@@ -12,11 +12,8 @@ Two profiles for [AeroSpace](https://github.com/nikitabobko/AeroSpace) window ma
 ## Usage
 
 ```bash
-# Switch to full tiling mode
-./switch.sh full
-
-# Switch to workspaces-only mode
-./switch.sh workspaces-only
+./switch.sh 1   # full tiling mode
+./switch.sh 2   # workspaces-only mode
 ```
 
 The script symlinks `~/.aerospace.toml` to the selected profile and reloads AeroSpace automatically.
@@ -32,8 +29,8 @@ alias aero="$HOME/aerospace-config/switch.sh"
 Then reload your shell (`source ~/.zshrc`) and use:
 
 ```bash
-aero full
-aero workspaces-only
+aero 1   # full tiling mode
+aero 2   # workspaces-only mode
 ```
 
 ## What's in each profile
