@@ -21,6 +21,21 @@ Two profiles for [AeroSpace](https://github.com/nikitabobko/AeroSpace) window ma
 
 The script symlinks `~/.aerospace.toml` to the selected profile and reloads AeroSpace automatically.
 
+### Optional: shell alias
+
+Add this to your `~/.zshrc` for quick switching:
+
+```bash
+alias aero="$HOME/aerospace-config/switch.sh"
+```
+
+Then reload your shell (`source ~/.zshrc`) and use:
+
+```bash
+aero full
+aero workspaces-only
+```
+
 ## What's in each profile
 
 ### full.toml
