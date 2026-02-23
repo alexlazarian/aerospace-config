@@ -5,9 +5,6 @@
 # Start every workspace in floating layout so windows are never auto-tiled
 after-startup-command = ['layout floating']
 
-# Same for when AeroSpace reconnects after login
-after-login-command = ['layout floating']
-
 # Normalizations don't matter in floating-only mode, but keep them off to be safe
 enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = false
