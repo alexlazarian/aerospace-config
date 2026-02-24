@@ -9,6 +9,10 @@ after-startup-command = ['layout floating']
 enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = false
 
+# Update SketchyBar window indicator on focus/workspace changes
+on-focus-changed = ['exec-and-forget /Users/sixmoog/aerospace-config/update-indicator.sh']
+exec-on-workspace-change = ['/bin/bash', '-c', '/Users/sixmoog/aerospace-config/update-indicator.sh']
+
 # New windows inherit floating layout automatically
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
@@ -18,6 +22,10 @@ default-root-container-orientation = 'auto'
 run = 'layout floating'
 
 [mode.main.binding]
+# Cycle through windows on the current workspace
+alt-tab = 'exec-and-forget /Users/sixmoog/aerospace-config/cycle-window.sh'
+alt-shift-tab = 'exec-and-forget /Users/sixmoog/aerospace-config/cycle-window.sh --reverse'
+
 # Workspace switching
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
@@ -41,6 +49,9 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 10'
+
+# Reset all windows on current workspace (unminimize + reposition)
+alt-shift-r = 'exec-and-forget /Users/sixmoog/aerospace-config/reset-windows.sh'
 
 # Reload config
 alt-shift-c = 'reload-config'
