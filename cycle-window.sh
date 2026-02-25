@@ -37,4 +37,4 @@ fi
 aerospace focus --window-id "${ids[$next_index]}"
 
 # Update the SketchyBar window indicator
-/Users/sixmoog/aerospace-config/update-indicator.sh &
+$HOME/Dev/aerospace-config/update-indicator.sh &
