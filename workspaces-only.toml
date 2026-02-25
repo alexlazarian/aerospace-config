@@ -14,7 +14,7 @@ enable-normalization-opposite-orientation-for-nested-containers = false
 
 # Update SketchyBar window indicator on focus/workspace changes
 on-focus-changed = ['exec-and-forget $HOME/Dev/aerospace-config/update-indicator.sh']
-exec-on-workspace-change = ['/bin/bash', '-c', '$HOME/Dev/aerospace-config/update-indicator.sh; $HOME/Dev/aerospace-config/auto-reset.sh']
+exec-on-workspace-change = ['/bin/bash', '-c', '$HOME/Dev/aerospace-config/update-indicator.sh']
 
 # New windows inherit floating layout automatically
 default-root-container-layout = 'tiles'
