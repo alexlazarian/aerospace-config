@@ -1,33 +1,50 @@
-# AeroSpace config: workspaces only
-# All tiling/layout management is disabled — windows behave like normal macOS windows.
-# Only workspace switching and moving windows between workspaces is enabled.
-
-# Start AeroSpace on login
 start-at-login = true
 
-# Start every workspace in floating layout so windows are never auto-tiled
-after-startup-command = ['layout floating']
+# Normalizations prevent weird tree configurations that can cause windows to get lost
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
 
-# Normalizations don't matter in floating-only mode, but keep them off to be safe
-enable-normalization-flatten-containers = false
-enable-normalization-opposite-orientation-for-nested-containers = false
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+# Mouse follows focus when focused monitor changes
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 # Update SketchyBar window indicator on focus/workspace changes
 on-focus-changed = ['exec-and-forget $HOME/Dev/aerospace-config/update-indicator.sh']
 exec-on-workspace-change = ['/bin/bash', '-c', '$HOME/Dev/aerospace-config/update-indicator.sh']
 
-# New windows inherit floating layout automatically
-default-root-container-layout = 'tiles'
-default-root-container-orientation = 'auto'
-
-# Automatically float all new windows
-[[on-window-detected]]
-run = 'layout floating'
-
 [mode.main.binding]
 # Cycle through windows on the current workspace
 alt-tab = 'exec-and-forget $HOME/Dev/aerospace-config/cycle-window.sh'
 alt-shift-tab = 'exec-and-forget $HOME/Dev/aerospace-config/cycle-window.sh --reverse'
+
+# Open terminal
+alt-enter = '''exec-and-forget osascript -e '
+    tell application "Terminal"
+        do script
+        activate
+    end tell'
+    '''
+
+# Focus (wraps around workspace edges)
+alt-j = 'focus --boundaries-action wrap-around-the-workspace left'
+alt-k = 'focus --boundaries-action wrap-around-the-workspace down'
+alt-l = 'focus --boundaries-action wrap-around-the-workspace up'
+alt-semicolon = 'focus --boundaries-action wrap-around-the-workspace right'
+
+# Move windows within the tiling layout
+alt-shift-j = 'move left'
+alt-shift-k = 'move down'
+alt-shift-l = 'move up'
+alt-shift-semicolon = 'move right'
+
+# Layouts
+alt-f = 'fullscreen'
+alt-s = 'layout v_accordion'               # stacking
+alt-w = 'layout h_accordion'               # tabbed
+alt-e = 'layout tiles horizontal vertical' # toggle split
+alt-shift-space = 'layout floating tiling' # float toggle
 
 # Workspace switching
 alt-1 = 'workspace 1'
@@ -53,8 +70,17 @@ alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 10'
 
-# Reset all windows on current workspace (unminimize + reposition)
+# Reset all windows on current workspace
 alt-shift-r = 'exec-and-forget $HOME/Dev/aerospace-config/reset-windows.sh'
 
-# Reload config
 alt-shift-c = 'reload-config'
+
+alt-r = 'mode resize'
+
+[mode.resize.binding]
+h = 'resize width -50'
+j = 'resize height +50'
+k = 'resize height -50'
+l = 'resize width +50'
+enter = 'mode main'
+esc = 'mode main'
