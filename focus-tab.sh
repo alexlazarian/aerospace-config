@@ -6,5 +6,5 @@ export PATH="/opt/homebrew/bin:$PATH"
 wid="$1"
 if [ -n "$wid" ]; then
   aerospace focus --window-id "$wid"
-  $HOME/Dev/aerospace-config/update-indicator.sh &
+  $HOME/Dev/tools/aerospace-config/update-indicator.sh &
 fi

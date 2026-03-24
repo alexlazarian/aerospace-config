@@ -38,7 +38,7 @@ fi
 # Update each tab slot
 index=0
 while IFS='|' read -r wid app bundle; do
-  click_cmd="$HOME/Dev/aerospace-config/focus-tab.sh $wid"
+  click_cmd="$HOME/Dev/tools/aerospace-config/focus-tab.sh $wid"
 
   if [ "$wid" = "$focused" ]; then
     # Focused tab: bold text on white background, app icon
